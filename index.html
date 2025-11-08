@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://files.catbox.moe/lt8296.jpg">
+    <title>EliteProTech Host</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #10B981;
+            --secondary: #059669;
+            --accent: #3B82F6;
+            --dark: #111827;
+            --darker: #1F2937;
+            --light: #F3F4F6;
+            --error: #EF4444;
+            --success: #10B981;
+            --warning: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Roboto', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .card {
+            background: #1F2937;
+            border-radius: 12px;
+            padding: 25px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #374151;
+            transition: all 0.3s ease;
+            margin: 15px 0;
+        }
+
+        @media (min-width: 480px) {
+            .card {
+                padding: 30px 25px;
+                margin: 20px 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .card {
+                padding: 35px 30px;
+                margin: 25px 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .card {
+                padding: 40px 35px;
+                margin: 30px 0;
+            }
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.4rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (min-width: 480px) {
+            h2 {
+                font-size: 1.6rem;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 35px;
+            }
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: #9CA3AF;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 480px) {
+            p {
+                font-size: 1rem;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            p {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            p {
+                font-size: 1.2rem;
+            }
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 480px) {
+            .input-group {
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .input-group {
+                margin-bottom: 30px;
+            }
+        }
+
+        /* IMPROVED GITHUB USERNAME INPUT */
+        #githubUser {
+            width: 100%;
+            padding: 14px 18px;
+            background: #374151;
+            border: 1px solid #4B5563;
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        @media (min-width: 480px) {
+            #githubUser {
+                padding: 16px 20px;
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #githubUser {
+                padding: 18px 22px;
+                font-size: 17px;
+            }
+        }
+
+        #githubUser:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+            background: #374151;
+        }
+
+        #githubUser::placeholder {
+            color: #9CA3AF;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        @media (min-width: 480px) {
+            #githubUser::placeholder {
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #githubUser::placeholder {
+                font-size: 17px;
+            }
+        }
+
+        /* Regular inputs (for auth forms) */
+        input:not(#githubUser) {
+            width: 100%;
+            padding: 12px 16px;
+            background: #374151;
+            border: 1px solid #4B5563;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 480px) {
+            input:not(#githubUser) {
+                padding: 14px 18px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            input:not(#githubUser) {
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+        }
+
+        input:not(#githubUser):focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+            background: #374151;
+        }
+
+        input:not(#githubUser)::placeholder {
+            color: #6B7280;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 12px 0;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        @media (min-width: 480px) {
+            .btn {
+                padding: 16px 22px;
+                font-size: 16px;
+                margin: 15px 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .btn {
+                padding: 18px 25px;
+                font-size: 17px;
+                margin: 18px 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .btn {
+                padding: 20px 28px;
+                font-size: 18px;
+                margin: 20px 0;
+            }
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .btn i {
+                margin-right: 10px;
+            }
+        }
+
+        .btn-accent {
+            background: linear-gradient(to right, var(--accent), #2563EB);
+        }
+
+        .btn-accent:hover {
+            background: linear-gradient(to right, #2563EB, var(--accent));
+        }
+
+        .btn-contact {
+            background: linear-gradient(to right, #6B7280, #4B5563);
+        }
+
+        .btn-contact:hover {
+            background: linear-gradient(to right, #4B5563, #6B7280);
+        }
+
+        #error {
+            color: var(--error);
+            margin: 15px 0;
+            padding: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 480px) {
+            #error {
+                margin: 18px 0;
+                padding: 14px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #error {
+                margin: 20px 0;
+                padding: 16px;
+                font-size: 1.1rem;
+            }
+        }
+
+        #error.show {
+            opacity: 1;
+            height: auto;
+            padding: 12px;
+            margin: 15px 0;
+        }
+
+        @media (min-width: 480px) {
+            #error.show {
+                padding: 14px;
+                margin: 18px 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            #error.show {
+                margin: 20px 0;
+                padding: 16px;
+            }
+        }
+
+        #error i {
+            margin-right: 8px;
+        }
+
+        @media (min-width: 768px) {
+            #error i {
+                margin-right: 10px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+        }
+
+        @media (min-width: 480px) {
+            .status {
+                margin: 18px 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .status {
+                margin: 20px 0;
+            }
+        }
+
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 12px;
+        }
+
+        @media (min-width: 480px) {
+            .spinner {
+                width: 35px;
+                height: 35px;
+                margin-right: 15px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .spinner {
+                width: 40px;
+                height: 40px;
+                border-width: 4px;
+                margin-right: 18px;
+            }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .github-corner {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 60px;
+            height: 60px;
+            fill: var(--primary);
+            color: var(--darker);
+        }
+
+        @media (min-width: 480px) {
+            .github-corner {
+                width: 70px;
+                height: 70px;
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .github-corner {
+                width: 80px;
+                height: 80px;
+                top: 25px;
+                right: 25px;
+            }
+        }
+
+        .github-corner:hover .octo-arm {
+            animation: octocat-wave 560ms ease-in-out;
+        }
+
+        @keyframes octocat-wave {
+            0%, 100% { transform: rotate(0); }
+            20%, 60% { transform: rotate(-25deg); }
+            40%, 80% { transform: rotate(10deg); }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        @media (min-width: 480px) {
+            .logo {
+                font-size: 2.3rem;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .logo {
+                font-size: 2.8rem;
+                margin-bottom: 35px;
+            }
+        }
+
+        .logo i {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tutorial-box {
+            background: #1F2937;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            border-left: 4px solid var(--primary);
+        }
+
+        @media (min-width: 480px) {
+            .tutorial-box {
+                padding: 18px;
+                margin-top: 25px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .tutorial-box {
+                padding: 20px;
+                margin-top: 30px;
+            }
+        }
+
+        .tutorial-box h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        @media (min-width: 480px) {
+            .tutorial-box h3 {
+                font-size: 1.1rem;
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .tutorial-box h3 {
+                font-size: 1.2rem;
+                }
+        }
+
+        .tutorial-box ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+
+        .tutorial-box li {
+            margin-bottom: 8px;
+            color: #9CA3AF;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        @media (min-width: 480px) {
+            .tutorial-box li {
+                margin-bottom: 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .tutorial-box li {
+                margin-bottom: 12px;
+                font-size: 1rem;
+            }
+        }
+
+        .tutorial-box li i {
+            margin-right: 8px;
+            color: var(--primary);
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+
+        @media (min-width: 480px) {
+            .tutorial-box li i {
+                margin-right: 10px;
+                font-size: 0.85rem;
+                margin-top: 3px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .tutorial-box li i {
+                margin-right: 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        .channel-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 480px) {
+            .channel-link {
+                margin-top: 25px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .channel-link {
+                margin-top: 30px;
+                font-size: 1.1rem;
+            }
+        }
+
+        .channel-link:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        .channel-link i {
+            margin-right: 8px;
+        }
+
+        @media (min-width: 768px) {
+            .channel-link i {
+                margin-right: 10px;
+            }
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        @media (min-width: 480px) {
+            .video-container {
+                margin-top: 25px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .video-container {
+                margin-top: 30px;
+                }
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .contact-btn {
+            margin-top: 15px;
+        }
+
+        @media (min-width: 480px) {
+            .contact-btn {
+                margin-top: 18px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .contact-btn {
+                margin-top: 20px;
+                }
+        }
+
+        /* ENHANCED LOADING SCREEN - Matching Dashboard Style */
+        #loadingScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            margin-bottom: 20px;
+        }
+
+        @media (min-width: 480px) {
+            .loading-spinner {
+                width: 70px;
+                height: 70px;
+                border-width: 6px;
+                margin-bottom: 25px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .loading-spinner {
+                width: 80px;
+                height: 80px;
+                border-width: 7px;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .loading-spinner {
+                width: 100px;
+                height: 100px;
+                border-width: 8px;
+                margin-bottom: 35px;
+            }
+        }
+
+        .loading-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        @media (min-width: 480px) {
+            .loading-text {
+                font-size: 1.8rem;
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .loading-text {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .loading-text {
+                font-size: 2.2rem;
+                margin-bottom: 18px;
+            }
+        }
+
+        .loading-subtext {
+            font-size: 1rem;
+            color: #9CA3AF;
+            text-align: center;
+        }
+
+        @media (min-width: 480px) {
+            .loading-subtext {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .loading-subtext {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .loading-subtext {
+                font-size: 1.3rem;
+            }
+        }
+
+        .notification {
+            animation: slideIn 0.5s forwards, fadeOut 0.5s forwards 10s;
+        }
+        @keyframes slideIn { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        .log-error { color: #EF4444; }
+        .log-warning { color: #F59E0B; }
+        .log-success { color: #10B981; }
+        .log-info { color: #3B82F6; }
+
+        /* Auth form container */
+        .auth-container {
+            width: 100%;
+            max-width: 500px;
+            display: none;
+            margin: 20px auto;
+        }
+
+        .auth-form {
+            background: #1F2937;
+            border-radius: 12px;
+            padding: 25px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid #374151;
+            margin: 15px 0;
+        }
+
+        @media (min-width: 480px) {
+            .auth-form {
+                padding: 30px 25px;
+                margin: 20px 0;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .auth-form {
+                padding: 35px 30px;
+                margin: 25px 0;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .auth-form {
+                padding: 40px 35px;
+                margin: 30px 0;
+            }
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #374151;
+            border: 1px solid #4B5563;
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 480px) {
+            .auth-form input {
+                padding: 16px 18px;
+                margin-bottom: 18px;
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .auth-form input {
+                padding: 18px 20px;
+                font-size: 17px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .auth-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+        }
+
+        .auth-form button {
+            width: 100%;
+            padding: 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 15px;
+            font-size: 15px;
+        }
+
+        @media (min-width: 480px) {
+            .auth-form button {
+                padding: 18px;
+                margin-top: 18px;
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .auth-form button {
+                padding: 20px;
+                margin-top: 20px;
+                font-size: 17px;
+            }
+        }
+
+        .auth-status {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 480px) {
+            .auth-status {
+                margin-top: 18px;
+                font-size: 1rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .auth-status {
+                margin-top: 20px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Form spacing */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 480px) {
+            .form-group {
+                margin-bottom: 18px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .form-group {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Mobile specific adjustments */
+        @media (max-width: 360px) {
+            body {
+                padding: 15px;
+            }
+            
+            .card {
+                padding: 20px 15px;
+                margin: 10px 0;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 12px 16px;
+                font-size: 14px;
+                margin: 10px 0;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            #githubUser {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+            
+            #githubUser::placeholder {
+                font-size: 14px;
+            }
+            
+            input:not(#githubUser) {
+                padding: 12px 14px;
+                font-size: 14px;
+            }
+
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+                border-width: 4px;
+            }
+
+            .loading-text {
+                font-size: 1.3rem;
+            }
+
+            .loading-subtext {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Extra large screens */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 550px;
+            }
+            
+            .card {
+                padding: 45px 40px;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .loading-spinner {
+                width: 120px;
+                height: 120px;
+                border-width: 9px;
+            }
+            
+            .loading-text {
+                font-size: 2.5rem;
+            }
+            
+            .loading-subtext {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ENHANCED LOADING SCREEN -->
+    <div id="loadingScreen" class="fixed inset-0 bg-gray-900 flex flex-col items-center justify-center z-50">
+        <div class="loading-spinner"></div>
+        <h1 class="loading-text">EliteProTech Host</h1>
+        <p class="loading-subtext">Initializing authentication system...</p>
+    </div>
+
+    <a href="https://github.com/EliteProTech" class="github-corner" aria-label="View source on GitHub">
+        <svg width="100%" height="100%" viewBox="0 0 250 250" aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+            <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+        </svg>
+    </a>
+
+    <div class="container" id="githubVerification">
+        <div class="card">
+            <div class="logo">
+                <i class="fas fa-server"></i>
+            </div>
+            <h2>EliteProTech Host</h2>
+            <p>Enter your GitHub username to verify your repository access</p>
+            
+            <div class="input-group">
+                <input type="text" id="githubUser" placeholder="GitHub username" autocomplete="off" spellcheck="false">
+            </div>
+            
+            <button class="btn" onclick="verifyAccess()">
+                <i class="fas fa-check-circle"></i> Verify Access
+            </button>
+            
+            <div id="error">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="error-message"></span>
+            </div>
+            
+            <button id="forkButton" class="btn btn-accent hidden" onclick="forkRepository()">
+                <i class="fas fa-code-branch"></i> Fork Repository
+            </button>
+
+            <button class="btn btn-contact contact-btn" onclick="window.location.href='https://eliteprotech.zone.id/contact'">
+                <i class="fas fa-envelope"></i> Contact Us
+            </button>
+
+            <div class="tutorial-box">
+                <h3>How to Deploy</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Fork and star the repository</li>
+                    <li><i class="fas fa-check"></i> Enter your GitHub username</li>
+                    <li><i class="fas fa-check"></i> Verify access to continue</li>
+                </ul>
+            </div>
+
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/BtMu4jUXlo4?si=Xi--9ENJ-qoAukVu" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <a href="https://whatsapp.com/channel/0029VaXaqHII1rcmdDBBsd3g" class="channel-link" target="_blank">
+                <i class="fab fa-whatsapp"></i> Join our WhatsApp Channel for Updates
+            </a>
+        </div>
+    </div>
+
+    <div class="auth-container" id="authForms">
+        <div class="auth-form">
+            <div class="logo">
+                <i class="fas fa-server"></i>
+            </div>
+            <h2>EliteProTech Host</h2>
+            <p>Sign in to access your dashboard</p>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="space-y-3 md:space-y-4">
+                <div class="form-group">
+                    <label class="block text-sm font-medium mb-1">Email</label>
+                    <input type="email" id="loginEmail" required
+                        class="w-full p-2 md:p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-green-500 focus:ring-1 focus:ring-green-500">
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium mb-1">Password</label>
+                    <input type="password" id="loginPassword" required
+                        class="w-full p-2 md:p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-green-500 focus:ring-1 focus:ring-green-500">
+                </div>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white p-2 md:p-3 rounded-lg font-medium text-sm md:text-base">
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Sign Up Form -->
+            <form id="signupForm" class="space-y-3 md:space-y-4 hidden">
+                <div class="form-group">
+                    <label class="block text-sm font-medium mb-1">Email</label>
+                    <input type="email" id="signupEmail" required
+                        class="w-full p-2 md:p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-green-500 focus:ring-1 focus:ring-green-500">
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium mb-1">Password</label>
+                    <input type="password" id="signupPassword" required minlength="6"
+                        class="w-full p-2 md:p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-green-500 focus:ring-1 focus:ring-green-500">
+                </div>
+                <div class="form-group">
+                    <label class="block text-sm font-medium mb-1">Confirm Password</label>
+                    <input type="password" id="signupConfirmPassword" required minlength="6"
+                        class="w-full p-2 md:p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:border-green-500 focus:ring-1 focus:ring-green-500">
+                </div>
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white p-2 md:p-3 rounded-lg font-medium text-sm md:text-base">
+                    Create Account
+                </button>
+            </form>
+
+            <div class="mt-3 md:mt-4 text-center">
+                <a href="#" id="toggleForms" class="text-green-500 hover:underline text-sm md:text-base">Create new account</a>
+            </div>
+
+            <div id="authStatus" class="mt-3 md:mt-4 text-center text-xs md:text-sm hidden"></div>
+        </div>
+    </div>
+
+    <script>
+        let githubUsername = '';
+        let selectedVersion = 'ELITE-PRO-V1';
+        let isLoading = false;
+        
+        // Check for expired session on page load
+        function checkSessionExpiry() {
+            const loginTime = localStorage.getItem('loginTime');
+            if (loginTime) {
+                const now = new Date().getTime();
+                const loginTimestamp = parseInt(loginTime);
+                const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+                
+                if (now - loginTimestamp > oneDay) {
+                    // Session expired
+                    localStorage.removeItem('authToken');
+                    localStorage.removeItem('loginTime');
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        // Simulate loading
+        window.addEventListener('DOMContentLoaded', () => {
+            // Check session expiry first
+            if (!checkSessionExpiry() && localStorage.getItem('authToken')) {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('loginTime');
+            }
+            
+            setTimeout(() => {
+                document.getElementById('loadingScreen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingScreen').style.display = 'none';
+                    
+                    // Check if already logged in
+                    if (localStorage.getItem('authToken')) {
+                        window.location.href = '/dashboard';
+                    } else {
+                        document.getElementById('githubVerification').style.display = 'block';
+                    }
+                }, 500);
+            }, 1500);
+        });
+
+        async function verifyAccess() {
+            if (isLoading) return;
+            
+            githubUsername = document.getElementById('githubUser').value.trim();
+            
+            if (!githubUsername) {
+                showError("Please enter a GitHub username.");
+                return;
+            }
+
+            isLoading = true;
+            document.getElementById('forkButton').classList.add('hidden');
+            
+            try {
+                // Check if the GitHub user exists
+                let userResponse = await fetch(`https://api.github.com/users/${githubUsername}`);
+                if (!userResponse.ok) {
+                    throw new Error("GitHub username not found.");
+                }
+
+                // Check if the user has forked the repository
+                let forkResponse = await fetch(`https://api.github.com/repos/${githubUsername}/${selectedVersion}`);
+                if (!forkResponse.ok) {
+                    document.getElementById('forkButton').classList.remove('hidden');
+                    throw new Error(`You need to fork the repository first.`);
+                }
+
+                // Show auth forms if verification succeeds
+                document.getElementById('githubVerification').style.display = 'none';
+                document.getElementById('authForms').style.display = 'block';
+            } catch (error) {
+                showError(error.message);
+            } finally {
+                isLoading = false;
+            }
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            document.getElementById('error-message').textContent = message;
+            errorDiv.classList.add('show');
+            
+            setTimeout(() => {
+                errorDiv.classList.remove('show');
+            }, 5000);
+        }
+
+        function forkRepository() {
+            window.open(`https://github.com/EliteProTech/${selectedVersion}/fork`, "_blank");
+        }
+
+        // Add keyboard support
+        document.getElementById('githubUser').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyAccess();
+            }
+        });
+
+        // Toggle between login and signup forms
+        document.getElementById('toggleForms').addEventListener('click', (e) => {
+            e.preventDefault();
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const toggleLink = document.getElementById('toggleForms');
+            
+            if (loginForm.classList.contains('hidden')) {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                toggleLink.textContent = 'Create new account';
+            } else {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                toggleLink.textContent = 'Already have an account?';
+            }
+        });
+
+        // Handle signup
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value.trim();
+            const confirmPassword = document.getElementById('signupConfirmPassword').value.trim();
+            
+            if (password !== confirmPassword) {
+                showStatus('Passwords do not match', 'error');
+                return;
+            }
+
+            showStatus('Creating account...', 'info');
+            
+            try {
+                const response = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showStatus('Account created successfully! Redirecting...', 'success');
+                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('loginTime', new Date().getTime().toString()); // Store login time
+                    setTimeout(() => window.location.href = '/dashboard', 1500);
+                } else {
+                    showStatus(data.message || 'Signup failed', 'error');
+                }
+            } catch (error) {
+                showStatus('Network error. Please try again.', 'error');
+            }
+        });
+
+        // Handle login with new error handling
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value.trim();
+            
+            showStatus('Authenticating...', 'info');
+            
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showStatus('Login successful! Redirecting...', 'success');
+                    localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('loginTime', new Date().getTime().toString()); // Store login time
+                    setTimeout(() => window.location.href = '/dashboard', 1500);
+                } else {
+                    // Show specific error message
+                    showStatus(data.message, 'error');
+                    
+                    // If user doesn't exist, show signup form
+                    if (data.message.includes("don't have an account")) {
+                        document.getElementById('loginForm').classList.add('hidden');
+                        document.getElementById('signupForm').classList.remove('hidden');
+                        document.getElementById('toggleForms').textContent = 'Already have an account?';
+                    }
+                }
+            } catch (error) {
+                showStatus('Network error. Please try again.', 'error');
+            }
+        });
+
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('authStatus');
+            statusDiv.textContent = message;
+            statusDiv.className = `mt-3 md:mt-4 text-center text-xs md:text-sm text-${type === 'success' ? 'green' : 
+                                type === 'error' ? 'red' : 'blue'}-500`;
+            statusDiv.classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# API Endpoints Found
+
+- /api/signup
+- /api/login
