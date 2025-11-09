@@ -1,6 +1,6 @@
 
         let githubUsername = '';
-        let selectedVersion = 'ELITE-PRO-V1';
+        let selectedVersion = 'QUEEN-DANI-V7';
         let isLoading = false;
         
         // Check for expired session on page load
@@ -92,7 +92,7 @@
         }
 
         function forkRepository() {
-            window.open(`https://github.com/EliteProTech/${selectedVersion}/fork`, "_blank");
+            window.open(`https://github.com/Nerdk-tech/${selectedVersion}/fork`, "_blank");
         }
 
         // Add keyboard support
