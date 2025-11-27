@@ -1,5 +1,4 @@
-
-        let githubUsername = 'Nerdk-tech';
+Let githubUsername = 'Nerdk-tech';
         let selectedVersion = 'QUEEN-DANI-V7';
         let isLoading = false;
         
@@ -19,7 +18,8 @@
                 }
             }
             return true;
-        }
+        } // FIX: Added closing curly brace here
+        
         
         // Simulate loading
         window.addEventListener('DOMContentLoaded', () => {
@@ -120,7 +120,7 @@
             }
         });
 
-        // Handle signup
+        // Handle signup - FIX APPLIED HERE
         document.getElementById('signupForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('signupEmail').value.trim();
@@ -138,7 +138,8 @@
                 const response = await fetch('/api/signup', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
+                    // 🔑 FIX: Send 'version' and map 'email' to 'username'
+                    body: JSON.stringify({ username: email, password, version: selectedVersion })
                 });
                 
                 const data = await response.json();
@@ -156,7 +157,7 @@
             }
         });
 
-        // Handle login with new error handling
+        // Handle login with new error handling - FIX APPLIED HERE
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
@@ -168,7 +169,8 @@
                 const response = await fetch('/api/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
+                    // 🔑 FIX: Map 'email' to 'username' for server consistency
+                    body: JSON.stringify({ username: email, password })
                 });
                 
                 const data = await response.json();
@@ -201,4 +203,4 @@
                                 type === 'error' ? 'red' : 'blue'}-500`;
             statusDiv.classList.remove('hidden');
         }
-    
+        
